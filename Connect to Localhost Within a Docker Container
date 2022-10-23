@@ -1,0 +1,16 @@
+When working with Docker, you usually containerize the services that form your stack and use inter-container networking 
+to communicate between them. Sometimes you might need a container to talk to a service on your 
+host that hasn’t been containerized. Here’s how to access localhost or 127.0.0.1 from within a Docker container.
+
+localhost and 127.0.0.1 – These resolve to the container.
+host.docker.internal – This resolves to the outside host.
+
+docker run -d --add-host host.docker.internal:host-gateway my-container:latest
+
+Connecting to the Host Network !!!
+docker run -d --network=host my-container:latest
+
+
+You’ve got several options when you need to reach outside a Docker container to your machine’s localhost. If you’re on Windows or Mac, 
+it’s best to use the built-in host.docker.internal alias. 
+Linux users can setup something similar with the --add-host flag when starting a container.
